@@ -10,17 +10,6 @@ The goals / steps of this project are the following:
 * Test that the model successfully drives around track one without leaving the road
 * Summarize the results with a written report
 
-
-[//]: # (Image References)
-
-[image1]: ./examples/placeholder.png "Model Visualization"
-[image2]: ./examples/placeholder.png "Grayscaling"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
-[image4]: ./examples/placeholder_small.png "Recovery Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
-
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
 
@@ -98,34 +87,21 @@ At the end of the process, the vehicle is able to drive autonomously around the 
 
 The final model architecture (model.py lines 142-184) consisted of a convolution neural network with the following layers and layer sizes:
 
-Layer (type)                     Output Shape          Param #     Connected to                     
-====================================================================================================
-lambda_1 (Lambda)                (None, 160, 320, 3)   0           lambda_input_1[0][0]             
-____________________________________________________________________________________________________
-cropping2d_1 (Cropping2D)        (None, 80, 280, 3)    0           lambda_1[0][0]                   
-____________________________________________________________________________________________________
-convolution2d_1 (Convolution2D)  (None, 38, 138, 24)   1824        cropping2d_1[0][0]               
-____________________________________________________________________________________________________
-convolution2d_2 (Convolution2D)  (None, 17, 67, 36)    21636       convolution2d_1[0][0]            
-____________________________________________________________________________________________________
-convolution2d_3 (Convolution2D)  (None, 7, 32, 48)     43248       convolution2d_2[0][0]            
-____________________________________________________________________________________________________
-convolution2d_4 (Convolution2D)  (None, 5, 30, 64)     27712       convolution2d_3[0][0]            
-____________________________________________________________________________________________________
-convolution2d_5 (Convolution2D)  (None, 3, 28, 64)     36928       convolution2d_4[0][0]            
-____________________________________________________________________________________________________
-dropout_1 (Dropout)              (None, 3, 28, 64)     0           convolution2d_5[0][0]            
-____________________________________________________________________________________________________
-flatten_1 (Flatten)              (None, 5376)          0           dropout_1[0][0]                  
-____________________________________________________________________________________________________
-dense_1 (Dense)                  (None, 100)           537700      flatten_1[0][0]                  
-____________________________________________________________________________________________________
-dense_2 (Dense)                  (None, 50)            5050        dense_1[0][0]                    
-____________________________________________________________________________________________________
-dense_3 (Dense)                  (None, 10)            510         dense_2[0][0]                    
-____________________________________________________________________________________________________
-dense_4 (Dense)                  (None, 1)             11          dense_3[0][0]                    
-====================================================================================================
+#### Layer (type) - Output Shape - Param # - Connected to                     
+lambda_1 (Lambda) - (None, 160, 320, 3) - 0 - lambda_input_1[0][0]             
+cropping2d_1 (Cropping2D) - (None, 80, 280, 3) - 0 - lambda_1[0][0]                   
+convolution2d_1 (Convolution2D) - (None, 38, 138, 24) - 1824 - cropping2d_1[0][0]               
+convolution2d_2 (Convolution2D) - (None, 17, 67, 36) - 21636 - convolution2d_1[0][0]            
+convolution2d_3 (Convolution2D) - (None, 7, 32, 48) - 43248 - convolution2d_2[0][0]            
+convolution2d_4 (Convolution2D) - (None, 5, 30, 64) - 27712 - convolution2d_3[0][0]            
+convolution2d_5 (Convolution2D) - (None, 3, 28, 64) - 36928 - convolution2d_4[0][0]            
+dropout_1 (Dropout) - (None, 3, 28, 64) - 0 - convolution2d_5[0][0]            
+flatten_1 (Flatten) - (None, 5376) - 0 - dropout_1[0][0]                  
+dense_1 (Dense) - (None, 100) - 537700 - flatten_1[0][0]                  
+dense_2 (Dense) - (None, 50) - 5050 - dense_1[0][0]                    
+dense_3 (Dense) - (None, 10) - 510 - dense_2[0][0]                    
+dense_4 (Dense) - (None, 1) - 11 - dense_3[0][0]                    
+
 Total params: 674,619
 Trainable params: 674,619
 Non-trainable params: 0
